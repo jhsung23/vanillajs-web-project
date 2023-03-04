@@ -32,33 +32,53 @@ function isValidEmail(email) {
   return regex.test(String(email).toLowerCase());
 }
 
+// Check required fields
+function checkRequired(inputArray) {
+  inputArray.forEach(function (input) {
+    if (input.value.trim() === '') {
+      console.log(input.id);
+      showError(input, `${getFieldName(input)} is required`);
+    } else {
+      showSuccess(input);
+    }
+  });
+}
+
+// Get fieldname
+function getFieldName(input) {
+  return input.id.charAt(0).toUpperCase() + input.id.slice(1);
+}
+
 // Event listeners
 form.addEventListener('submit', function (event) {
   event.preventDefault(); // submit시 자동 새로고침을 막음
 
-  if (username.value === '') {
-    showError(username, 'Username is required');
-  } else {
-    showSuccess(username);
-  }
+  checkRequired([username, email, password, password2]);
 
-  if (email.value === '') {
-    showError(email, 'Email is required');
-  } else if (!isValidEmail(email.value)) {
-    showError(email, 'Email is not valid');
-  } else {
-    showSuccess(email);
-  }
+  // ****** target of refactoring ******
+  //   if (username.value === '') {
+  //     showError(username, 'Username is required');
+  //   } else {
+  //     showSuccess(username);
+  //   }
 
-  if (password.value === '') {
-    showError(password, 'Password is required');
-  } else {
-    showSuccess(password);
-  }
+  //   if (email.value === '') {
+  //     showError(email, 'Email is required');
+  //   } else if (!isValidEmail(email.value)) {
+  //     showError(email, 'Email is not valid');
+  //   } else {
+  //     showSuccess(email);
+  //   }
 
-  if (password2.value === '') {
-    showError(password2, 'Confirm password is required');
-  } else {
-    showSuccess(password2);
-  }
+  //   if (password.value === '') {
+  //     showError(password, 'Password is required');
+  //   } else {
+  //     showSuccess(password);
+  //   }
+
+  //   if (password2.value === '') {
+  //     showError(password2, 'Confirm password is required');
+  //   } else {
+  //     showSuccess(password2);
+  //   }
 });
