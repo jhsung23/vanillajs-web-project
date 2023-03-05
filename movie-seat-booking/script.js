@@ -16,6 +16,17 @@ function populateUI() {
       seats[seatIndex].classList.add('selected');
     });
   }
+
+  const selectedMovieIndex = localStorage.getItem('selectedMovieIndex');
+
+  if (selectedMovieIndex !== null) {
+    movieSelect.selectedIndex = selectedMovieIndex;
+  }
+}
+
+function setMovieData(movieIndex, moviePrice) {
+  localStorage.setItem('selectedMovieIndex', movieIndex);
+  localStorage.setItem('selectedMoviePrice', moviePrice);
 }
 
 function updateSelectedCount() {
@@ -33,6 +44,7 @@ function updateSelectedCount() {
 movieSelect.addEventListener('change', (event) => {
   ticketPrice = +event.target.value;
 
+  setMovieData(event.target.selectedIndex, event.target.value);
   updateSelectedCount();
 });
 
