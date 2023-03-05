@@ -55,3 +55,5 @@ container.addEventListener('click', (event) => {
     updateSelectedCount();
   }
 });
+
+updateSelectedCount();
