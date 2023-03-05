@@ -6,9 +6,25 @@ const total = document.getElementById('total');
 
 let ticketPrice = +movieSelect.value;
 
+populateUI();
+
+function populateUI() {
+  const selectedSeats = JSON.parse(localStorage.getItem('selectedSeats'));
+
+  if (selectedSeats !== null && selectedSeats.length > 0) {
+    selectedSeats.forEach((seatIndex) => {
+      seats[seatIndex].classList.add('selected');
+    });
+  }
+}
+
 function updateSelectedCount() {
   const selectedSeats = document.querySelectorAll('.row .selected');
   const selectedSeatCount = +selectedSeats.length;
+
+  const selectedSeatsIndex = [...selectedSeats].map((seat) => [...seats].indexOf(seat));
+
+  localStorage.setItem('selectedSeats', JSON.stringify(selectedSeatsIndex));
 
   count.textContent = selectedSeatCount;
   total.textContent = selectedSeatCount * ticketPrice;
