@@ -16,8 +16,7 @@ async function getRandomUser() {
   const userName = `${first} ${last}`;
   const userWealth = Math.floor(Math.random() * 1000000);
 
-  const u = { userName, userWealth };
-  addUser(u);
+  addUser({ userName, userWealth });
 }
 
 function addUser(user) {
@@ -55,7 +54,7 @@ function calcWealthAndShow() {
 }
 
 function updateDOM() {
-  main.innerHTML = '<h2><strong>이름</strong> 재산</h2>';
+  main.innerHTML = '<h2><strong>User</strong> Wealth</h2>';
 
   main.append(
     ...users.map((user) => {
