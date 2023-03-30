@@ -5,7 +5,7 @@ const calcWealthButton = document.getElementById('calculate-wealth');
 
 const main = document.getElementById('main');
 
-const users = [];
+let users = [];
 
 async function getRandomUser() {
   const response = await fetch('https://randomuser.me/api');
@@ -25,12 +25,19 @@ function addUser(user) {
   updateDOM();
 }
 
+function setMoneyDouble() {
+  users = users.map((user) => {
+    return { ...user, userWealth: user.userWealth * 2 };
+  });
+
+  updateDOM();
+}
+
 function updateDOM() {
   main.innerHTML = '<h2><strong>이름</strong> 재산</h2>';
 
   main.append(
     ...users.map((user) => {
-      console.log(user);
       const div = document.createElement('div');
       div.className = 'person';
       div.innerHTML = `<strong>${user.userName}</strong> ${formatWealth(user.userWealth)}`;
@@ -45,3 +52,4 @@ function formatWealth(wealth) {
 }
 
 addUserButton.addEventListener('click', getRandomUser);
+doubleWealthButton.addEventListener('click', setMoneyDouble);
