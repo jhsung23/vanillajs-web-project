@@ -1,6 +1,7 @@
 const addUserButton = document.getElementById('add-user');
 const doubleWealthButton = document.getElementById('double');
 const showMillsButton = document.getElementById('show-millionaires');
+const sortButton = document.getElementById('sort');
 const calcWealthButton = document.getElementById('calculate-wealth');
 
 const main = document.getElementById('main');
@@ -39,6 +40,12 @@ function showMillionaires() {
   updateDOM();
 }
 
+function sortByWealth() {
+  users.sort((a, b) => b.userWealth - a.userWealth);
+
+  updateDOM();
+}
+
 function updateDOM() {
   main.innerHTML = '<h2><strong>이름</strong> 재산</h2>';
 
@@ -60,3 +67,4 @@ function formatWealth(wealth) {
 addUserButton.addEventListener('click', getRandomUser);
 doubleWealthButton.addEventListener('click', setMoneyDouble);
 showMillsButton.addEventListener('click', showMillionaires);
+sortButton.addEventListener('click', sortByWealth);
