@@ -46,6 +46,14 @@ function sortByWealth() {
   updateDOM();
 }
 
+function calcWealthAndShow() {
+  const sum = users.reduce((total, user) => total + user.userWealth, 0);
+
+  const div = document.createElement('div');
+  div.innerHTML = `<h3>Total Wealth: <strong>${formatWealth(sum)}</strong></h3>`;
+  main.append(div);
+}
+
 function updateDOM() {
   main.innerHTML = '<h2><strong>이름</strong> 재산</h2>';
 
@@ -68,3 +76,4 @@ addUserButton.addEventListener('click', getRandomUser);
 doubleWealthButton.addEventListener('click', setMoneyDouble);
 showMillsButton.addEventListener('click', showMillionaires);
 sortButton.addEventListener('click', sortByWealth);
+calcWealthButton.addEventListener('click', calcWealthAndShow);
