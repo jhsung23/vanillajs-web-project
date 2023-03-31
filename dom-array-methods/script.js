@@ -68,7 +68,11 @@ function updateDOM() {
 }
 
 function formatWealth(wealth) {
-  return '$' + wealth.toLocaleString('en-US', { minimumFractionDigits: 2 });
+  return wealth.toLocaleString('en-US', {
+    minimumFractionDigits: 2,
+    style: 'currency',
+    currency: 'USD',
+  });
 }
 
 addUserButton.addEventListener('click', getRandomUser);
